@@ -15,7 +15,7 @@ class VoiceAssistance:
     intents = ''
     classes = ''
     model = ''
-    ERROR_THRESHOLD = 0.25
+    ERROR_THRESHOLD = 0.7
 
     def load_data_set(self):
         with open('data/intents.json') as json_data:
@@ -74,6 +74,8 @@ class VoiceAssistance:
                         return random.choice(i['responses'])
 
                 results.pop(0)
+        else:
+            return "Sorry I didn't find any thing."
 
     def chat(self):
         self.load_model()
@@ -92,8 +94,6 @@ class VoiceAssistance:
 
         with open(f'pickelmodel/katana-assistant-model.pkl', 'rb') as f:
             self.model = pickle.load(f)
-
-            # function to add to JSON
 
     @staticmethod
     def write_json(data, filename='data/intents.json'):
