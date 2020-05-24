@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from voice_assistance import VoiceAssistance
 from flask_cors import CORS
-
 from voice_model import VoiceModel
 
 app = Flask(__name__)
