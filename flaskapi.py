@@ -26,7 +26,16 @@ def get_resp():
 @app.route('/retrain', methods=['GET'])
 def retrain():
     VoiceModel.train_model()
+    voice_ass.load_model()
+    voice_ass.load_data_set()
     return jsonify("done")
+
+
+@app.route('/update', methods=['POST'])
+def update_json():
+    data = request.get_json()
+    voice_ass.update_json(data)
+    return jsonify("updated")
 
 
 if __name__ == "__main__":
